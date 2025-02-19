@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 
 # Initialize Flask app and enable CORS
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://martaaija.github.io", "http://localhost:3000"])
 
 # Initialize DB and create tables if they do not exist
 init_db()  # This will create tables if they do not exist
