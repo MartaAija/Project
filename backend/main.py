@@ -112,19 +112,10 @@ def live_traffic():
         logging.error(f"Error in live_traffic route: {e}")
         return jsonify({"error": str(e)}), 500
 
-# Sign-Up Route
-@app.route("/sign-up", methods=["POST", "OPTIONS"])
+@app.route("/sign-up", methods=["POST"])
 def sign_up():
-    if request.method == "OPTIONS":
-        # Handle preflight request
-        response = jsonify({"message": "Preflight request handled"})
-        response.headers.add("Access-Control-Allow-Origin", "https://martaaija.github.io")
-        response.headers.add("Access-Control-Allow-Methods", "POST, OPTIONS")
-        response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
-        return response
-
     try:
-        # Get data from the request body
+        # Get data from request body
         data = request.get_json()
         first_name = data.get("firstName")
         last_name = data.get("lastName")
@@ -139,12 +130,12 @@ def sign_up():
         # Create a database session
         db = SessionLocal()
 
-        # Check if the user already exists
+        # Check if user exists
         existing_user = db.query(User).filter(User.username == username).first()
         if existing_user:
             return jsonify({"message": "Username already exists"}), 400
 
-        # Create a new user instance
+        # Create new user
         new_user = User(
             first_name=first_name,
             last_name=last_name,
@@ -154,17 +145,16 @@ def sign_up():
             company=company,
         )
 
-        # Add the new user to the database and commit the transaction
         db.add(new_user)
-        db.commit()  # Ensure the transaction is committed
+        db.commit()
         db.refresh(new_user)
 
-        # Return success response
         return jsonify({"message": "User created successfully", "user": {"username": new_user.username, "id": new_user.id}}), 201
     except Exception as e:
         return jsonify({"message": "Error during sign-up", "error": str(e)}), 500
     finally:
         db.close()
+
 
 # Login Route
 @app.route("/api/login", methods=["POST"])
