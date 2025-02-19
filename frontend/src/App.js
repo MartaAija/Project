@@ -52,7 +52,7 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
+    <Router basename="/Project">
       <div style={{ display: "flex" }}>
         <Navbar isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         <div style={{ flex: 1, marginLeft: "220px" }}>
