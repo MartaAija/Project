@@ -403,7 +403,14 @@ def forgot_password():
 
 @app.after_request
 def add_csp(response):
-    response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' http://localhost:5000 https://martaaija.github.io; img-src 'self' data:;"
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; "
+        "script-src 'self' 'unsafe-inline'; "
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+        "font-src 'self' data: https://fonts.gstatic.com; "
+        "connect-src 'self' https://project-production-f5c5.up.railway.app https://martaaija.github.io; "
+        "img-src 'self' data:;"
+    )
     return response
 
 if __name__ == "__main__":
