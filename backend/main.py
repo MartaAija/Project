@@ -15,7 +15,7 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 CORS(
     app,
-    origins=["https://martaaija.github.io", "http://localhost:3000"],
+    resources={r"/*": {"origins": ["https://martaaija.github.io", "http://localhost:3000"]}},
     methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization"],
     supports_credentials=True,
@@ -119,8 +119,16 @@ def live_traffic():
         return jsonify({"error": str(e)}), 500
 
 # Sign-Up Route
-@app.route("/sign-up", methods=["POST"])
+@app.route("/sign-up", methods=["POST", "OPTIONS"])
 def sign_up():
+    if request.method == "OPTIONS":
+        # Handle preflight request
+        response = jsonify({"message": "Preflight request handled"})
+        response.headers.add("Access-Control-Allow-Origin", "https://martaaija.github.io")
+        response.headers.add("Access-Control-Allow-Methods", "POST, OPTIONS")
+        response.headers.add("Access-Control-Allow-Headers", "Content-Type, Authorization")
+        return response
+
     try:
         # Get data from the request body
         data = request.get_json()
