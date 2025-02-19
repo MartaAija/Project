@@ -19,7 +19,7 @@ const Settings = () => {
       try {
         const token = localStorage.getItem('token');
         
-        const response = await axios.get('http://127.0.0.1:5000/api/user/profile', {
+        const response = await axios.get("https://project-production-f5c5.up.railway.app/api/user/profile", {
           headers: {
             'Authorization': `Bearer ${token}`
           }

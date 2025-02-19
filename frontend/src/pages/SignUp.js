@@ -47,7 +47,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/sign-up", {  
+      const response = await fetch("https://project-production-f5c5.up.railway.app/sign-up", {  
         method: "POST",
         headers: {
           "Content-Type": "application/json",
