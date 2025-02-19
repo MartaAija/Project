@@ -13,8 +13,8 @@ RUN apt update && \
 COPY backend/requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
-# Copy your application code to the container
-COPY . .
+# Copy the application code to the container
+COPY backend/. .
 
 # Expose the port Flask or FastAPI will run on
 EXPOSE 5000
