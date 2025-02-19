@@ -399,18 +399,9 @@ def forgot_password():
         if 'db' in locals():
             db.close()
 
-@app.after_request
-def add_csp(response):
-    response.headers["Content-Security-Policy"] = (
-        "default-src 'self'; "
-        "script-src 'self' 'unsafe-inline'; "
-        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
-        "font-src 'self' data: https://fonts.gstatic.com; "
-        "connect-src 'self' https://project-production-f5c5.up.railway.app https://martaaija.github.io; "
-        "img-src 'self' data:;"
-    )
-    return response
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))  # Railway assigns a port dynamically
-    app.run(host="0.0.0.0", port=port, debug=True)  # Must be 0.0.0.0
+    # Access the PORT environment variable set by Railway
+    port = int(os.environ.get("PORT", 8080))  # Defaults to 8080 if not available
+    # Start the app with host 0.0.0.0 to allow it to listen on all available interfaces
+    app.run(host="0.0.0.0", port=port, debug=True)
