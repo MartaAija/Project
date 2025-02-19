@@ -4,10 +4,10 @@ FROM python:3.12-slim
 # Set the working directory
 WORKDIR /app
 
-# Update packages and install Open vSwitch along with other dependencies
+# Install pip and update it
 RUN apt update && \
-    apt install -y openvswitch-switch iproute2 iputils-ping sudo && \
-    apt clean
+    apt install -y python3-pip && \
+    pip install --upgrade pip
 
 # Copy the requirements file and install Python dependencies
 COPY backend/requirements.txt ./requirements.txt
