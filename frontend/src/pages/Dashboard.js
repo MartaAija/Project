@@ -69,7 +69,7 @@ const Dashboard = () => {
 
   const fetchTrafficData = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:5000/live-traffic");
+      const response = await axios.get("https://project-production-f5c5.up.railway.app/live-traffic");
       const data = response.data;
       
       // If an attack is detected (prediction is not BENIGN)
@@ -645,7 +645,7 @@ const Dashboard = () => {
                       onClick={async () => {
                         try {
                           const token = localStorage.getItem('token');
-                          await axios.post('http://127.0.0.1:5000/api/attacks/save', 
+                          await axios.post('https://project-production-f5c5.up.railway.app/api/attacks/save', 
                             {
                               ...selectedAttack,
                               timestamp: selectedAttack.timestamp,

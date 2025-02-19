@@ -25,7 +25,7 @@ const History = () => {
     const fetchSavedAttacks = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://127.0.0.1:5000/api/attacks/history', {
+        const response = await axios.get('https://project-production-f5c5.up.railway.app/api/attacks/history', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -34,7 +34,7 @@ const History = () => {
       } catch (error) {
         console.error('Error fetching saved attacks:', error);
       }
-    };
+    };    
 
     fetchSavedAttacks();
   }, []);
@@ -56,10 +56,10 @@ const History = () => {
                 if (window.confirm('Are you sure you want to delete this attack record?')) {
                   try {
                     const token = localStorage.getItem('token');
-                    await axios.delete(`http://127.0.0.1:5000/api/attacks/delete/${attack.id}`, {
+                    await axios.delete(`https://project-production-f5c5.up.railway.app/api/attacks/delete/${attack.id}`, {
                       headers: {
                         'Authorization': `Bearer ${token}`
-                      }
+                      }                  
                     });
                     setSavedAttacks(savedAttacks.filter(a => a.id !== attack.id));
                   } catch (error) {

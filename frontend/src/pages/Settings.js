@@ -49,7 +49,7 @@ const Settings = () => {
   const handleSave = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put('http://127.0.0.1:5000/api/user/profile', formData, {
+      const response = await axios.put('https://project-production-f5c5.up.railway.app/api/user/profile', formData, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -61,6 +61,7 @@ const Settings = () => {
       setError(error.response?.data?.message || 'Failed to update profile');
     }
   };
+  
 
   const handleChange = (e) => {
     setFormData({
