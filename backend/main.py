@@ -419,13 +419,5 @@ def add_csp(response):
     )
     return response
 
-@app.route("/sign-up", methods=["OPTIONS"])
-def handle_preflight():
-    response = jsonify({"message": "Preflight request handled"})
-    response.headers.add("Access-Control-Allow-Origin", "https://martaaija.github.io")
-    response.headers.add("Access-Control-Allow-Methods", "POST")
-    response.headers.add("Access-Control-Allow-Headers", "Content-Type")
-    return response
-
 if __name__ == "__main__":
     app.run(debug=True)
