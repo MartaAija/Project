@@ -400,6 +400,19 @@ def forgot_password():
             db.close()
 
 
+@app.after_request
+def add_csp(response):
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; "  # Allow only resources from the same origin by default
+        "script-src 'self' 'unsafe-inline' https://martaaija.github.io; "  # Allow scripts from the frontend domain
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "  # Allow styles from the same origin and Google Fonts
+        "font-src 'self' https://fonts.gstatic.com; "  # Allow fonts from Google Fonts
+        "connect-src 'self' https://project-production-f5c5.up.railway.app https://martaaija.github.io; "  # Allow API calls
+        "img-src 'self' data:; "  # Allow images from the same origin and inline images
+    )
+    return response
+
+
 if __name__ == "__main__":
     # Access the PORT environment variable set by Railway
     port = int(os.environ.get("PORT", 8080))  # Defaults to 8080 if not available
