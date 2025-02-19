@@ -401,5 +401,10 @@ def forgot_password():
         if 'db' in locals():
             db.close()
 
+@app.after_request
+def add_csp(response):
+    response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data:;"
+    return response
+
 if __name__ == "__main__":
     app.run(debug=True)

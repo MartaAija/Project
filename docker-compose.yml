@@ -6,4 +6,4 @@ services:
     ports:
       - "5000:5000"
     environment:
-      DATABASE_URL: ${DATABASE_URL}  # Use the Railway database URL
+      DATABASE_URL: postgresql://postgres:VKeSpSQtYjCszzpfAtLOWToOROKFmFJW@postgres.railway.internal:5432/railway
