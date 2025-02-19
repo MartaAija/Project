@@ -2,12 +2,13 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.pool import QueuePool
 
 # Database URL (ensure the password is correct)
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-# Create an engine to connect to PostgreSQL
-engine = create_engine(DATABASE_URL)
+# Create an engine with connection pooling
+engine = create_engine(DATABASE_URL, poolclass=QueuePool, pool_size=5, max_overflow=10, pool_timeout=30)
 
 # Base class for declarative models
 Base = declarative_base()
