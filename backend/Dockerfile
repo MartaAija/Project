@@ -20,7 +20,7 @@ RUN pip install -r requirements.txt
 COPY backend/. .
 
 # Expose the port Flask or FastAPI will run on
-EXPOSE 5000
+EXPOSE 8080
 
 # Set the default command to run the app
 CMD ["python", "main.py"]
