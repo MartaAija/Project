@@ -1,14 +1,14 @@
 services:
   backend:
     build:
-      context: ./backend
+      context: ./backend  
+      dockerfile: Dockerfile  
     ports:
-      - "5000:5000"
+      - "8080:8080"
     volumes:
       - ./backend:/app
     environment:
       DATABASE_URL: "postgresql://postgres:VKeSpSQtYjCszzpfAtLOWToOROKFmFJW@interchange.proxy.rlwy.net:53800/railway"
-
     networks:
       - default
 
