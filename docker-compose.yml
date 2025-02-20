@@ -7,7 +7,8 @@ services:
     volumes:
       - ./backend:/app
     environment:
-      DATABASE_URL: postgresql://postgres:VKeSpSQtYjCszzpfAtLOWToOROKFmFJW@postgres.railway.internal:5432/railway
+      DATABASE_URL: "postgresql://postgres:VKeSpSQtYjCszzpfAtLOWToOROKFmFJW@interchange.proxy.rlwy.net:53800/railway"
+
     networks:
       - default
 

@@ -14,12 +14,11 @@ RUN pip install --upgrade pip
 COPY backend/requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
-# Copy the application code
+# Copy the application code (including backend directory)
 COPY . .
 
 # Expose the port
 EXPOSE 8080
 
 # Use Gunicorn instead of Flask's development server
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "main:app"]
-
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "backend.main:app"]
