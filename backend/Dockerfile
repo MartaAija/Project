@@ -11,8 +11,7 @@ RUN apt update && apt install -y libpq-dev gcc && apt clean
 RUN pip install --upgrade pip
 
 # Copy the requirements file and install dependencies
-COPY requirements.txt ./requirements.txt
-
+COPY backend/requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
 # Copy the application code
