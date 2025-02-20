@@ -11,7 +11,7 @@ RUN apt update && apt install -y libpq-dev gcc && apt clean
 RUN pip install --upgrade pip
 
 # Copy the requirements file and install dependencies
-COPY backend/requirements.txt ./requirements.txt
+COPY requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
 # Copy the application code (including backend directory)
@@ -21,4 +21,4 @@ COPY . .
 EXPOSE 8080
 
 # Use Gunicorn instead of Flask's development server
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "backend.main:app"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "main:app"]
