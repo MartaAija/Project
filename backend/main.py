@@ -417,4 +417,4 @@ if __name__ == "__main__":
     # Access the PORT environment variable set by Railway
     port = int(os.environ.get("PORT", 8080))  # Defaults to 8080 if not available
     # Start the app with host 0.0.0.0 to allow it to listen on all available interfaces
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port, debug=False)

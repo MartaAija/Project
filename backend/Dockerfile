@@ -4,24 +4,23 @@ FROM python:3.12-slim
 # Set the working directory
 WORKDIR /app
 
-# Install system dependencies (libpq-dev for psycopg2)
-RUN apt update && \
-    apt install -y libpq-dev gcc && \
-    apt clean
+# Install system dependencies
+RUN apt update && apt install -y libpq-dev gcc && apt clean
 
 # Install pip and update it
 RUN pip install --upgrade pip
 
-# Copy the requirements file and install Python dependencies
-COPY ./requirements.txt ./requirements.txt
+# Copy the requirements file and install dependencies
+COPY requirements.txt ./requirements.txt
+
 RUN pip install -r requirements.txt
 
-# Copy the application code to the container
-COPY ./ .  # This will copy all backend files into the container
+# Copy the application code
+COPY . .
 
-# Expose the port Flask or FastAPI will run on
+# Expose the port
 EXPOSE 8080
 
-# Set the default command to run the app
-CMD ["python", "main.py"]
+# Use Gunicorn instead of Flask's development server
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "main:app"]
 
