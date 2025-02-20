@@ -13,14 +13,15 @@ RUN apt update && \
 RUN pip install --upgrade pip
 
 # Copy the requirements file and install Python dependencies
-COPY backend/requirements.txt ./requirements.txt
+COPY ./requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
 # Copy the application code to the container
-COPY backend/. .
+COPY ./ .  # This will copy all backend files into the container
 
 # Expose the port Flask or FastAPI will run on
 EXPOSE 8080
 
 # Set the default command to run the app
 CMD ["python", "main.py"]
+
