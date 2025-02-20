@@ -21,4 +21,4 @@ COPY backend/ /app/
 EXPOSE 8080
 
 # Use Gunicorn instead of Flask's development server
-CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "main:app"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "backend.main:app"]
