@@ -15,7 +15,7 @@ COPY backend/requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
 # Copy the application code (including backend directory)
-COPY . .
+COPY backend/ /app/
 
 # Expose the port
 EXPOSE 8080
