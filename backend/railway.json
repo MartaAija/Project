@@ -7,7 +7,7 @@
   "deploy": {
     "runtime": "V2",
     "numReplicas": 1,
-    "startCommand": "python main.py",
+    "startCommand": "gunicorn -w 4 -b 0.0.0.0:8080 backend.main:app",
     "sleepApplication": false,
     "multiRegionConfig": {
       "europe-west4-drams3a": {
